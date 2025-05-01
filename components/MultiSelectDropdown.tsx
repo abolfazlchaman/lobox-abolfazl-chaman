@@ -49,6 +49,7 @@ export default function MultiSelectDropdown({ options, onChange, setOptions }: P
 
     // Add the removed option back to available options in parent component
     setOptions([removedOption, ...options]); // Add back to options list
+    setDropdownOpen(true);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -64,7 +65,7 @@ export default function MultiSelectDropdown({ options, onChange, setOptions }: P
       ref={dropdownRef}>
       <div
         className={styles.inputWrapper}
-        onClick={() => setDropdownOpen(true)}>
+        onClick={() => setDropdownOpen(!dropdownOpen)}>
         {selected.map((s, i) => (
           <span
             key={i}
@@ -88,10 +89,11 @@ export default function MultiSelectDropdown({ options, onChange, setOptions }: P
           onKeyDown={handleKeyPress}
           placeholder="Type or select..."
         />
+        <span className={`${styles.chevron} ${dropdownOpen ? styles.open : styles.closed}`}>v</span>
       </div>
 
       {dropdownOpen && (
-        <ul className={styles.dropdown}>
+        <ul className={`${styles.dropdownList}`}>
           {options
             .filter((o) => !selected.some((s) => s.label === o.label))
             .map((o, i) => (
