@@ -36,7 +36,7 @@ The source code for this project is available: [Here](https://github.com/abolfaz
 
 ## Deployed on Vercel
 
-You can view the live deployment here: [Vercel Deployment Link](https://vercel-link.vercel.app)
+You can view the live deployment: [here](https://lobox-abolfazl-chaman.vercel.app/)
 
 ## Contact
 
