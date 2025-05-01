@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lobox Front-End Developer Abolfazl chaman Test
+
+This is a React framework project bootstrapped with [Next.js](https://nextjs.org). The project demonstrates the implementation of a multi-drop-down select component, meeting the technical requirements for the Lobox Front-End Developer interview.
 
 ## Getting Started
 
-First, run the development server:
+To run the development server, execute one of the following commands (pnpm prefered):
 
 ```bash
-npm run dev
+pnpm run dev
 # or
 yarn dev
 # or
-pnpm dev
+npm dev
 # or
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Once the server is running, open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+You can start editing the page by modifying `app/page.tsx`. The page will auto-update as you make changes.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Testing
 
-## Learn More
+To run tests, use Jest with the following command:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm test
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project does not use UI libraries such as ShadCN or MUI but can be extended to do so. It leverages the core React framework provided by Next.js and Sass (scss).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## GitHub Repository
 
-## Deploy on Vercel
+The source code for this project is available: [Here](https://github.com/abolfazlchaman/lobox-abolfazl-chaman)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployed on Vercel
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+You can view the live deployment here: [Vercel Deployment Link](https://vercel-link.vercel.app)
+
+## Contact
+
+If you have any questions or need further information, feel free to contact me at: [abolfazlchaman.info@gmail.com](mailto:abolfazlchaman.info@gmail.com) or [contact@abolfazlchaman.com](mailto:contact@abolfazlchaman.com)
