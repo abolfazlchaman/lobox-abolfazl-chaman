@@ -6,7 +6,8 @@ const config: Config = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   moduleNameMapper: {
     '\\.(css|scss|sass)$': 'identity-obj-proxy',
-    '^@/(.*)$': '<rootDir>/$1'
+    '^@/(.*)$': '<rootDir>/$1',
+    '\\.svg$': '<rootDir>/__mocks__/fileMock.js'
   },
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest'
