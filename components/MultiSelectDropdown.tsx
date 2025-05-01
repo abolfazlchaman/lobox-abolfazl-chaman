@@ -100,17 +100,23 @@ export default function MultiSelectDropdown({ options, onChange, setOptions }: P
       </div>
 
       {dropdownOpen && (
-        <ul className={`${styles.dropdownList}`}>
-          {options
-            .filter((o) => !selected.some((s) => s.label === o.label))
-            .map((o, i) => (
-              <li
-                key={i}
-                onClick={() => handleAddOption(o)}
-                role="option">
-                {o.emoji} {o.label}
-              </li>
-            ))}
+        <ul className={styles.dropdownList}>
+          {options.length === 0 ? (
+            <li className={styles.emptyState}>
+              No other options available! <br /> try removing or typing new ones.
+            </li>
+          ) : (
+            options
+              .filter((o) => !selected.some((s) => s.label === o.label))
+              .map((o, i) => (
+                <li
+                  key={i}
+                  onClick={() => handleAddOption(o)}
+                  role="option">
+                  {o.emoji} {o.label}
+                </li>
+              ))
+          )}
         </ul>
       )}
     </div>

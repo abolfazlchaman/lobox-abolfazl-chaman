@@ -109,3 +109,12 @@
 .dropdownList li:active {
   background-color: #e0e0e0;
 }
+
+.emptyState {
+  padding: 8px 16px;
+  color: #888;
+  font-size: 0.9rem;
+  text-align: center;
+  font-style: italic;
+  cursor: not-allowed !important;
+}
