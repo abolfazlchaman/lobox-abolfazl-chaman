@@ -64,7 +64,7 @@ export default function MultiSelectDropdown({ options, onChange, setOptions }: P
       className={styles.container}
       ref={dropdownRef}>
       <div
-        className={styles.inputWrapper}
+        className={`${styles.inputWrapper} ${dropdownOpen ? styles.open : ""}`}
         onClick={() => setDropdownOpen(!dropdownOpen)}>
         {selected.map((s, i) => (
           <span
@@ -74,12 +74,11 @@ export default function MultiSelectDropdown({ options, onChange, setOptions }: P
               className={styles.removeBtn}
               onClick={(e) => {
                 e.stopPropagation();
-                handleRemoveOption(i); // Remove and add back to the dropdown
+                handleRemoveOption(i);
               }}>
               ×
             </button>
-            &nbsp;
-            {s.emoji} {s.label}
+            &nbsp;{s.emoji} {s.label}
           </span>
         ))}
         <input
