@@ -53,9 +53,21 @@ export default function MultiSelectDropdown({ options, onChange }: Props) {
           <span
             key={i}
             className={styles.tag}>
+            <button
+              className={styles.removeBtn}
+              onClick={(e) => {
+                e.stopPropagation();
+                const newSelected = selected.filter((_s, index) => index !== i);
+                setSelected(newSelected);
+                onChange(newSelected);
+              }}>
+              ×
+            </button>
+            &nbsp;
             {s.emoji} {s.label}
           </span>
         ))}
+
         <input
           type="text"
           value={input}
