@@ -1,8 +1,10 @@
 "use client";
+
 import MultiSelectDropdown from "@/components/MultiSelectDropdown";
 import Link from "next/link";
+import { useState } from "react";
 
-const options = [
+const initialOptions = [
   { label: "Education", emoji: "🎓" },
   { label: "Yeeeah, science!", emoji: "🧪" },
   { label: "Art", emoji: "🎨" },
@@ -12,21 +14,29 @@ const options = [
 ];
 
 export default function HomePage() {
+  const [options, setOptions] = useState(initialOptions);
+  const [selected, setSelected] = useState<any[]>([]);
+
+  const handleChange = (newSelected: any[]) => {
+    setSelected(newSelected);
+  };
+
   return (
     <main style={{ padding: "2rem" }}>
-      <h1>Multi-select Dropdown </h1>
+      <h1>Multi-select Dropdown</h1>
       <p>
-        Lobox assesment - by&nbsp;
+        Lobox assessment - by&nbsp;
         <Link
           target="_blank"
-          href={"www.abolfazlchaman.com"}>
-          Abolfazl chaman
+          href="https://www.abolfazlchaman.com">
+          Abolfazl Chaman
         </Link>
       </p>
       <div style={{ width: "300px" }}>
         <MultiSelectDropdown
           options={options}
-          onChange={(selected) => console.log("Selected:", selected)}
+          onChange={handleChange}
+          setOptions={setOptions}
         />
       </div>
     </main>

@@ -1,17 +1,19 @@
+"use client";
 import { useState, useRef, useEffect } from "react";
 import styles from "./MultiSelectDropdown.module.scss";
 
 interface Option {
   label: string;
-  emoji?: string;
+  emoji: string;
 }
 
 interface Props {
   options: Option[];
   onChange: (selected: Option[]) => void;
+  setOptions: (options: Option[]) => void;
 }
 
-export default function MultiSelectDropdown({ options, onChange }: Props) {
+export default function MultiSelectDropdown({ options, onChange, setOptions }: Props) {
   const [input, setInput] = useState("");
   const [selected, setSelected] = useState<Option[]>([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -27,20 +29,34 @@ export default function MultiSelectDropdown({ options, onChange }: Props) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  function handleAddOption(option: Option) {
+  const handleAddOption = (option: Option) => {
     if (!selected.some((s) => s.label === option.label)) {
-      const newSelected = [...selected, option];
+      const newSelected = [option, ...selected];
       setSelected(newSelected);
       onChange(newSelected);
-    }
-    setInput("");
-  }
 
-  function handleKeyPress(e: React.KeyboardEvent<HTMLInputElement>) {
-    if (e.key === "Enter" && input.trim()) {
-      handleAddOption({ label: input.trim() });
+      // Remove the selected option from the options list in parent component
+      setOptions(options.filter((o) => o.label !== option.label)); // Update options
     }
-  }
+    setInput(""); // Reset input after adding option
+  };
+
+  const handleRemoveOption = (index: number) => {
+    const removedOption = selected[index]; // Save the removed option
+    const newSelected = selected.filter((_s, i) => i !== index);
+    setSelected(newSelected);
+    onChange(newSelected);
+
+    // Add the removed option back to available options in parent component
+    setOptions([removedOption, ...options]); // Add back to options list
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && input.trim()) {
+      const newOption = { label: input.trim(), emoji: "🎉" }; // Default emoji
+      handleAddOption(newOption);
+    }
+  };
 
   return (
     <div
@@ -57,9 +73,7 @@ export default function MultiSelectDropdown({ options, onChange }: Props) {
               className={styles.removeBtn}
               onClick={(e) => {
                 e.stopPropagation();
-                const newSelected = selected.filter((_s, index) => index !== i);
-                setSelected(newSelected);
-                onChange(newSelected);
+                handleRemoveOption(i); // Remove and add back to the dropdown
               }}>
               ×
             </button>
@@ -67,7 +81,6 @@ export default function MultiSelectDropdown({ options, onChange }: Props) {
             {s.emoji} {s.label}
           </span>
         ))}
-
         <input
           type="text"
           value={input}
@@ -84,7 +97,8 @@ export default function MultiSelectDropdown({ options, onChange }: Props) {
             .map((o, i) => (
               <li
                 key={i}
-                onClick={() => handleAddOption(o)}>
+                onClick={() => handleAddOption(o)}
+                role="option">
                 {o.emoji} {o.label}
               </li>
             ))}
