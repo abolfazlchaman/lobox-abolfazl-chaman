@@ -4,7 +4,12 @@ import MultiSelectDropdown from "@/components/MultiSelectDropdown";
 import Link from "next/link";
 import { useState } from "react";
 
-const initialOptions = [
+type Option = {
+  label: string;
+  emoji: string;
+};
+
+const initialOptions: Option[] = [
   { label: "Education", emoji: "🎓" },
   { label: "Yeeeah, science!", emoji: "🧪" },
   { label: "Art", emoji: "🎨" },
@@ -15,9 +20,9 @@ const initialOptions = [
 
 export default function HomePage() {
   const [options, setOptions] = useState(initialOptions);
-  const [selected, setSelected] = useState<any[]>([]);
+  const [, setSelected] = useState<Option[]>([]);
 
-  const handleChange = (newSelected: any[]) => {
+  const handleChange = (newSelected: Option[]) => {
     setSelected(newSelected);
   };
 
