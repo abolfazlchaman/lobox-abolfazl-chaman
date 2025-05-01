@@ -1,6 +1,8 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import styles from "./MultiSelectDropdown.module.scss";
+import Chevron from "../public/chevron.svg";
+import Image from "next/image";
 
 interface Option {
   label: string;
@@ -88,7 +90,13 @@ export default function MultiSelectDropdown({ options, onChange, setOptions }: P
           onKeyDown={handleKeyPress}
           placeholder="Type or select..."
         />
-        <span className={`${styles.chevron} ${dropdownOpen ? styles.open : styles.closed}`}>v</span>
+        <Image
+          src={Chevron.src}
+          width={16}
+          height={18}
+          className={`${styles.chevron} ${dropdownOpen ? styles.open : styles.closed}`}
+          alt="chevron"
+        />
       </div>
 
       {dropdownOpen && (
